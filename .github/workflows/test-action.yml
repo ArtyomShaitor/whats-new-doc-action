@@ -1,0 +1,23 @@
+name: Test Whats New, Doc?
+
+on:
+  commit:
+
+jobs:
+  test-action:
+    name: GitHub Actions Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+
+      - name: Test Whats New, Doc? Action
+        id: whatsnewdoc
+        uses: ./
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          changelog-path: ./changelogs-examples/simple/CHANGELOG.md
+          webhook: 'http://localhost:3000/webhook'
+          always: true

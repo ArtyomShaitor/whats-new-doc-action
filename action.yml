@@ -1,18 +1,32 @@
-name: 'The name of your action here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'actions/whats-new-doc'
+description:
+  'This action checks changes in CHANGELOG.md file and sends it to the provided
+webhook.'
+author: 'artsiomshaitar'
 
-# Define your inputs here.
 inputs:
-  milliseconds:
-    description: 'Your input description here'
+  github-token:
+    description: 'Your GitHub Token'
     required: true
-    default: '1000'
+  webhook:
+    description: 'Webhhok URL that will be triggered'
+    required: true
+  changelog-path:
+    description: 'Path to your CHANGELOG.md file'
+    required: false
+    default: './CHANGELOG.md'
+  always:
+    description:
+      'Run the action regardless of whether there are changes in the
+      CHANGELOG.md or not'
+    required: false
+    default: false
 
-# Define your outputs here.
 outputs:
-  time:
-    description: 'Your output description here'
+  json:
+    description: 'CHANGELOG in JSON'
+  md:
+    description: 'CHANGELOG in Markdown syntax'
 
 runs:
   using: node20
